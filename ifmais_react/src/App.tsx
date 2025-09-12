@@ -1,16 +1,26 @@
 
 // Imports CSS
-import './App.css'
+import './App.css';
 
-// Shadcn Components
-import { Button } from "@/components/ui/button"
+// Import react-router-dom
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  // Link
+} from "react-router-dom";
+
+// Import pages
+import MainApp from './pages/MainApp';
 
 const App = () => {
-
   return (
-    <div className="app flex flex-col items-center justify-center">
-      <h1 className='text-3xl font-bold underline mb-4'> My App </h1>
-      <Button> Finalizar Compra </Button>
+    <div className="app">
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainApp />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
