@@ -16,6 +16,7 @@ export function Header({ className }: HeaderProps) {
     <header className={cn('bg-white sticky top-0 z-50', className)}>
       <div className="max-w-7xl mx-auto px-4 py-2 sm:px-8 lg:px-8">
         <div className="flex justify-between items-center h-16">
+          
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
@@ -31,7 +32,7 @@ export function Header({ className }: HeaderProps) {
               variant="default"
               size="lg"
               onClick={toggleCart}
-              className="relative rounded-full bg-orange-500 hover:bg-orange-600"
+              className="relative rounded-smlg bg-orange-500 hover:bg-orange-600"
             >
               <ShoppingCart className="h-6 w-6" />
               {itemCount > 0 && (
@@ -42,10 +43,7 @@ export function Header({ className }: HeaderProps) {
                   {itemCount}
                 </Badge>
               )}
-              <span className="sr-only">Seu Carrinho</span>
             </Button>
-            
-            <span className="text-lg text-gray-600 hidden sm:block">Seu Carrinho</span>
           </div>
         </div>
       </div>

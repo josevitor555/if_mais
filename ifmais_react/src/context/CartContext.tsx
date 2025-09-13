@@ -8,6 +8,9 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('cart-items', []);
   const [isOpen, setIsOpen] = useState(false);
+  const [notification, setNotification] = useState<{ isVisible: boolean; product?: Product }>(
+    { isVisible: false, product: undefined }
+  );
 
   // Calculate total whenever items change
   const total = cartItems.reduce((sum, item) => sum + item.subtotal, 0);
@@ -38,6 +41,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         return [...currentItems, newItem];
       }
     });
+    
+    // Show notification when item is added
+    setNotification({ isVisible: true, product });
   };
 
   const removeFromCart = (itemId: string) => {
@@ -71,15 +77,21 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setIsOpen(prev => !prev);
   };
 
+  const hideNotification = () => {
+    setNotification({ isVisible: false, product: undefined });
+  };
+
   const value: CartContextType = {
     items: cartItems,
     total,
     isOpen,
+    notification,
     addToCart,
     removeFromCart,
     updateQuantity,
     clearCart,
-    toggleCart
+    toggleCart,
+    hideNotification
   };
 
   return (

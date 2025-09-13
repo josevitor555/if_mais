@@ -18,6 +18,10 @@ export interface CartContextType {
   items: CartItem[];
   total: number;
   isOpen: boolean;
+  notification: {
+    isVisible: boolean;
+    product?: Product;
+  };
   
   // Actions
   addToCart: (product: Product) => void;
@@ -25,4 +29,5 @@ export interface CartContextType {
   updateQuantity: (itemId: string, quantity: number) => void;
   clearCart: () => void;
   toggleCart: () => void;
+  hideNotification: () => void;
 }

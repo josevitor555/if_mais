@@ -3,21 +3,50 @@ import { X } from 'lucide-react';
 // import { Button } from '@/components/ui/button';
 import { useCart } from '@/context/CartContext';
 import { CartItem } from './CartItem';
+import AddedToCartNotification from '@/components/comp-271';
 
 export function CartSidebar() {
-    const { items, total, isOpen, toggleCart, clearCart } = useCart();
+    const { items, total, isOpen, toggleCart, clearCart, notification, hideNotification } = useCart();
 
     const handleCheckout = () => {
         if (items.length === 0) {
             alert('Seu carrinho está vazio!');
             return;
         }
-        alert('Funcionalidade de checkout em desenvolvimento!');
+        
+        // Create WhatsApp message template
+        const phoneNumber = 'phone_number'; // Example phone number
+        let message = 'Olá! Gostaria de fazer o seguinte pedido:\n\n';
+        
+        // Add each cart item to the message
+        items.forEach(item => {
+            const itemPrice = item.product.price.toFixed(2);
+            message += `R$ ${itemPrice} - ${item.product.title}`;
+            if (item.quantity > 1) {
+                message += ` x${item.quantity}`;
+            }
+            message += '\n';
+        });
+        
+        // Add total
+        message += `\nTotal: R$ ${total.toFixed(2)}`;
+        
+        // Create WhatsApp URL
+        const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+        
+        // Open WhatsApp
+        window.open(whatsappURL, '_blank');
     };
 
     return (
-        <Sheet open={isOpen} onOpenChange={toggleCart}>
-            <SheetContent className="w-full sm:max-w-md p-6 [&>button]:hidden">
+        <>
+            <AddedToCartNotification 
+                product={notification.product}
+                isVisible={notification.isVisible}
+                onClose={hideNotification}
+            />
+            <Sheet open={isOpen} onOpenChange={toggleCart}>
+            <SheetContent className="w-full sm:max-w-md p-2 [&>button]:hidden">
                 <SheetHeader className="space-y-2.5 mb-6 flex flex-row items-center justify-between">
                     <SheetTitle className="text-left text-lg">Seu Carrinho</SheetTitle>
                     <button
@@ -31,18 +60,19 @@ export function CartSidebar() {
                 {items.length === 0 ? (
                     <div className="flex flex-col items-center justify-center h-full space-y-4">
                         <div className="text-center">
-                            <p className="text-muted-foreground text-lg mb-2">
+                            <p className="text-muted-foreground text-2xl mb-2">
                                 Seu carrinho está vazio
                             </p>
-                            <p className="text-muted-foreground text-sm">
+                            <p className="text-muted-foreground text-lg">
                                 Adicione alguns produtos para começar
                             </p>
                         </div>
                     </div>
                 ) : (
                     <div className="flex flex-col h-full">
+                        
                         {/* Cart Items */}
-                        <div className="flex-1 overflow-y-auto py-4 max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] lg:max-h-130">
+                        <div className="flex-1 overflow-y-auto py-4 max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] lg:max-h-120">
                             <div className="space-y-0">
                                 {items.map((item) => (
                                     <CartItem key={item.id} item={item} />
@@ -86,5 +116,6 @@ export function CartSidebar() {
                 )}
             </SheetContent>
         </Sheet>
+        </>
     );
 }
