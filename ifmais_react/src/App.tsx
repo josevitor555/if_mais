@@ -11,14 +11,14 @@ import {
 } from "react-router-dom";
 
 // Import pages
-import MainApp from './pages/MainApp';
+import { Home } from '@/pages/Home';
 
 const App = () => {
   return (
     <div className="app">
       <Router>
         <Routes>
-          <Route path="/" element={<MainApp />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Router>
     </div>
