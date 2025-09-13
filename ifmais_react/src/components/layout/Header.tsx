@@ -13,7 +13,7 @@ export function Header({ className }: HeaderProps) {
   const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <header className={cn('bg-white shadow-sm', className)}>
+    <header className={cn('bg-white sticky top-0 z-50', className)}>
       <div className="max-w-7xl mx-auto px-4 py-2 sm:px-8 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

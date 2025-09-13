@@ -23,7 +23,7 @@ export function ProductGrid({ products, activeCategory, categories, onCategoryCh
       {/* Featured Products Section */}
       <div className="text-center">
         <h2 className="text-3xl font-light text-muted-foreground mb-4">
-          {activeCategory === 'todos' ? 'Produtos em Destaque' : `Nossos produtos em Destaque`}
+          {activeCategory === 'todos' ? 'Produtos em Destaque' : `Nossos produtos por Categoria`}
         </h2>
         <div className="w-16 h-1 rounded-full bg-orange-500 mx-auto mb-6"></div>
         

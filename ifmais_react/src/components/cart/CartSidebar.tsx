@@ -17,14 +17,14 @@ export function CartSidebar() {
 
     return (
         <Sheet open={isOpen} onOpenChange={toggleCart}>
-            <SheetContent className="w-full sm:max-w-md p-6">
+            <SheetContent className="w-full sm:max-w-md p-6 [&>button]:hidden">
                 <SheetHeader className="space-y-2.5 mb-6 flex flex-row items-center justify-between">
-                    <SheetTitle className="text-left">Seu Carrinho</SheetTitle>
+                    <SheetTitle className="text-left text-lg">Seu Carrinho</SheetTitle>
                     <button
                         onClick={toggleCart}
-                        className="h-8 w-8 rounded-full border border-border hover:bg-accent flex items-center justify-center transition-colors"
+                        className="h-10 w-10 rounded-full bg-orange-500 hover:bg-orange-600 flex items-center justify-center transition-colors text-white"
                     >
-                        <X className="h-4 w-4" />
+                        <X className="h-6 w-6" />
                     </button>
                 </SheetHeader>
 
@@ -42,7 +42,7 @@ export function CartSidebar() {
                 ) : (
                     <div className="flex flex-col h-full">
                         {/* Cart Items */}
-                        <div className="flex-1 overflow-y-auto py-4">
+                        <div className="flex-1 overflow-y-auto py-4 max-h-[40vh] sm:max-h-[50vh] md:max-h-[60vh] lg:max-h-130">
                             <div className="space-y-0">
                                 {items.map((item) => (
                                     <CartItem key={item.id} item={item} />
