@@ -49,7 +49,8 @@ export function CartItem({ item }: CartItemProps) {
           size="sm"
           variant="outline"
           onClick={handleDecrement}
-          className="h-8 w-8 p-0 rounded-full border-orange-300 text-orange-500 hover:bg-orange-50"
+          className="h-8 w-8 p-0 rounded-full border-orange-300 text-orange-600 hover:bg-orange-50"
+          aria-label={`Diminuir quantidade de ${item.product.title}`}
         >
           <Minus className="h-4 w-4" />
         </Button>
@@ -62,7 +63,8 @@ export function CartItem({ item }: CartItemProps) {
           size="sm"
           variant="outline"
           onClick={handleIncrement}
-          className="h-8 w-8 p-0 rounded-full border-orange-300 text-orange-500 hover:bg-orange-50"
+          className="h-8 w-8 p-0 rounded-full border-orange-300 text-orange-600 hover:bg-orange-50"
+          aria-label={`Aumentar quantidade de ${item.product.title}`}
         >
           <Plus className="h-4 w-4" />
         </Button>
@@ -74,6 +76,7 @@ export function CartItem({ item }: CartItemProps) {
         variant="ghost"
         onClick={handleRemove}
         className="h-8 w-8 p-0 text-red-500 hover:text-red-700 hover:bg-red-50"
+        aria-label={`Remover ${item.product.title} do carrinho`}
       >
         <Trash2 className="h-4 w-4" />
       </Button>

@@ -9,6 +9,13 @@ interface CategoryFilterProps {
 }
 
 export function CategoryFilter({ categories, activeCategory, onCategoryChange }: CategoryFilterProps) {
+  const handleKeyDown = (event: React.KeyboardEvent, categoryName: string) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      onCategoryChange(categoryName);
+    }
+  };
+
   return (
     <div className="flex flex-wrap gap-2 justify-end">
       {categories.map((category) => (
@@ -17,12 +24,16 @@ export function CategoryFilter({ categories, activeCategory, onCategoryChange }:
         //   variant={activeCategory === category.name ? "default" : "outline"}
         //   size="sm"
           onClick={() => onCategoryChange(category.name)}
+          onKeyDown={(e) => handleKeyDown(e, category.name)}
           className={cn(
             "rounded-full px-8 py-2 transition-all duration-200",
             activeCategory === category.name
               ? "bg-orange-500 hover:bg-orange-600 text-white"
-              : "text-muted-foreground border-border hover:border-orange-500 hover:text-orange-500 hover:bg-orange-50"
+              : "text-muted-foreground border-border hover:border-orange-500 hover:text-orange-600 hover:bg-orange-50"
           )}
+          aria-label={`Filtrar produtos por categoria: ${category.label}`}
+          aria-pressed={activeCategory === category.name}
+          role="button"
         >
           {category.label}
         </button>

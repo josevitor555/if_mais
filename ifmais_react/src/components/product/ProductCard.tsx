@@ -41,6 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
           onClick={handleAddToCart}
           className="w-full py-6 rounded-full bg-background text-foreground hover:text-white hover:bg-orange-500 transition-colors duration-200"
           variant="outline"
+          aria-label={`Adicionar ${product.title} ao carrinho`}
         >
           <span className='text-lg'> Adicionar </span>
         </Button>

@@ -15,7 +15,7 @@ export function Home() {
       <div className="min-h-screen bg-background">
         <Header />
         
-        <main className="py-8">
+        <main id="main-content" className="py-8" role="main" aria-label="Produtos disponíveis">
           <ProductGrid
             products={products}
             activeCategory={activeCategory}
