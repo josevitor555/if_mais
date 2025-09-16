@@ -21,7 +21,7 @@ export function Header({ className }: HeaderProps) {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <h1 className="text-2xl font-bold text-gray-900" role="heading" aria-level={1}>
-                Cruz <span className="text-orange-600">MYFOOD</span>
+                Cruz <span className="text-orange-600"> Food </span>
               </h1>
             </div>
           </div>

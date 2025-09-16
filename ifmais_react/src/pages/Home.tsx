@@ -12,7 +12,7 @@ export function Home() {
 
   return (
     <CartProvider>
-      <div className="min-h-screen bg-background">
+      <div className="app min-h-screen bg-background">
         <Header />
         
         <main id="main-content" className="py-8" role="main" aria-label="Produtos disponíveis">
